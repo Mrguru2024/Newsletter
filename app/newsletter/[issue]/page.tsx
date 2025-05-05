@@ -23,7 +23,7 @@ interface PageProps {
   params: { issue: string }
 }
 
-const NewsletterPage: React.FC<PageProps> = ({ params }) => {
+export default function NewsletterPage({ params }: PageProps) {
   return (
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-yellow-100 to-orange-200 p-8">
       <div className="max-w-7xl mx-auto">
@@ -35,5 +35,3 @@ const NewsletterPage: React.FC<PageProps> = ({ params }) => {
     </main>
   );
 }
-
-export default NewsletterPage;
