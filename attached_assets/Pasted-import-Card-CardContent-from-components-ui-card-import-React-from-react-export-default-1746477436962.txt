@@ -1,0 +1,96 @@
+import { Card, CardContent } from "@/components/ui/card";
+import React from "react";
+
+export default function Element() {
+  // Comic panel data
+  const comicElements = [
+    {
+      id: 1,
+      type: "explosion",
+      text: "POW!",
+      position: "top-left",
+      color: "teal",
+    },
+    { id: 2, type: "panel", position: "top-center" },
+    { id: 3, type: "speech-bubble", position: "top-right" },
+    { id: 4, type: "speech-bubble", position: "bottom-left" },
+    { id: 5, type: "panel", position: "bottom-center" },
+    {
+      id: 6,
+      type: "explosion",
+      text: "BOOM!",
+      position: "bottom-right",
+      color: "pink",
+    },
+  ];
+
+  return (
+    <section className="bg-transparent flex justify-center w-full">
+      <Card className="w-[945px] h-[756px] border-0 relative overflow-hidden">
+        <CardContent className="p-0">
+          <div className="relative w-[944px] h-[755px] bg-gradient-to-br from-yellow-400 to-orange-300">
+            {/* Dotted background pattern */}
+            <div
+              className="absolute inset-0 bg-red-500 opacity-50"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle, #ff0000 10%, transparent 10%)",
+                backgroundSize: "20px 20px",
+              }}
+            ></div>
+
+            {/* Main white content area with red border */}
+            <div className="absolute top-6 left-6 right-6 bottom-6 bg-white border-4 border-red-600 grid grid-cols-3 grid-rows-2 gap-4 p-4">
+              {/* POW explosion */}
+              <div className="relative col-span-1 row-span-1 border-2 border-red-600">
+                <div className="absolute top-4 left-4 w-32 h-32 bg-teal-300 rounded-full flex items-center justify-center transform rotate-12">
+                  <div className="absolute inset-0 bg-yellow-300 rounded-full scale-90 flex items-center justify-center">
+                    <span
+                      className="text-4xl font-bold text-yellow-500 transform -rotate-12 drop-shadow-lg"
+                      style={{ fontFamily: "Comic Sans MS, cursive" }}
+                    >
+                      POW!
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Middle top panel */}
+              <div className="col-span-1 row-span-1 border-2 border-red-600"></div>
+
+              {/* Top right speech bubble */}
+              <div className="relative col-span-1 row-span-1 border-2 border-red-600">
+                <div className="absolute top-4 right-4 w-48 h-32 bg-white border-2 border-red-600 rounded-full flex items-center justify-center"></div>
+              </div>
+
+              {/* Bottom left speech bubble */}
+              <div className="relative col-span-1 row-span-1 border-2 border-red-600">
+                <div className="absolute bottom-12 left-8 w-48 h-24 bg-white border-2 border-red-600 rounded-2xl flex items-center justify-center">
+                  <div className="absolute -bottom-6 left-8 w-8 h-8 bg-white border-r-2 border-b-2 border-red-600 transform rotate-45"></div>
+                </div>
+              </div>
+
+              {/* Middle bottom panel */}
+              <div className="col-span-1 row-span-1 border-2 border-red-600"></div>
+
+              {/* BOOM explosion */}
+              <div className="relative col-span-1 row-span-1 border-2 border-red-600">
+                <div className="absolute bottom-16 right-16 flex flex-col items-center">
+                  <div className="w-32 h-24 bg-pink-500 rounded-tl-full rounded-tr-full rounded-bl-3xl rounded-br-full flex items-center justify-center">
+                    <span
+                      className="text-3xl font-bold text-yellow-400 transform rotate-6 drop-shadow-lg"
+                      style={{ fontFamily: "Comic Sans MS, cursive" }}
+                    >
+                      BOOM!
+                    </span>
+                  </div>
+                  <div className="w-6 h-12 bg-yellow-400 -mt-2 rounded-b-lg"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </section>
+  );
+}
