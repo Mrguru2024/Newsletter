@@ -1,4 +1,5 @@
 
+import React from 'react';
 import ComicLayout from "@/components/ComicLayout";
 
 const mockPanels = [
@@ -10,10 +11,16 @@ const mockPanels = [
   { type: "explosion", text: "BOOM!", color: "pink" },
 ] as const;
 
-export default function NewsletterPage({ params }: { params: { issue: string } }) {
+interface PageProps {
+  params: { issue: string }
+}
+
+const NewsletterPage: React.FC<PageProps> = ({ params }) => {
   return (
     <main className="min-h-screen flex items-center justify-center bg-yellow-100">
       <ComicLayout panels={mockPanels} />
     </main>
   );
 }
+
+export default NewsletterPage;
