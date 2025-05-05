@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { AspectRatio } from "../../../components/ui/aspect-ratio";
 import { Card } from "../../../components/ui/card";
 
 export default function NewsletterPage({ params }: { params: { issue: string } }) {
