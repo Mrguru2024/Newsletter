@@ -1,0 +1,145 @@
+Create a newsletter page in Next.js (App Router) with a comic book layout using:
+
+Reusable React components (<ComicPanel />)
+
+Tailwind CSS for styling
+
+SVG or animated elements (like “POW!” and “BOOM!”)
+
+Support for dynamic issue content (data-driven)
+
+📁 1. PROJECT STRUCTURE
+Create the following file and folder structure:
+
+bash
+Copy
+Edit
+/app
+  /newsletter
+    /[issue]
+      page.tsx            ← Newsletter issue page using ComicLayout
+/components
+  ComicLayout.tsx         ← Wraps all comic panels in layout grid
+  ComicPanel.tsx          ← Renders individual panel based on type
+  panels/
+    Boom.tsx              ← Comic "BOOM!" explosion panel
+    Pow.tsx               ← Comic "POW!" explosion panel
+    SpeechBubble.tsx      ← Comic speech bubble component
+    StandardPanel.tsx     ← Regular comic panel
+⚙️ 2. INSTALL & CONFIGURE TAILWIND CSS
+Follow Tailwind's official setup for Next.js with App Router. Ensure the following:
+
+tailwind.config.ts
+ts
+Copy
+Edit
+module.exports = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        comic: ['"Comic Sans MS"', 'Comic Neue', 'cursive'],
+      },
+      colors: {
+        pow: "#0ff0db",
+        boom: "#f472b6",
+      },
+    },
+  },
+  plugins: [],
+};
+globals.css
+css
+Copy
+Edit
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gradient-to-br from-yellow-400 to-orange-300;
+  font-family: 'Comic Sans MS', cursive;
+}
+🧩 3. CREATE ComicPanel.tsx
+tsx
+Copy
+Edit
+// components/ComicPanel.tsx
+export default function ComicPanel({ type, text, color }) {
+  switch (type) {
+    case "explosion":
+      return (
+        <div className={`w-full h-full relative`}>
+          <div className={`w-32 h-32 bg-${color}-500 rounded-full flex items-center justify-center transform rotate-12`}>
+            <span className="text-4xl font-bold text-yellow-300 drop-shadow" style={{ fontFamily: 'Comic Sans MS' }}>
+              {text}
+            </span>
+          </div>
+        </div>
+      );
+    case "speech-bubble":
+      return (
+        <div className="relative bg-white border-2 border-red-600 rounded-2xl w-full h-full p-4">
+          <div className="absolute -bottom-4 left-6 w-6 h-6 bg-white border-b-2 border-r-2 border-red-600 transform rotate-45" />
+        </div>
+      );
+    case "panel":
+    default:
+      return <div className="w-full h-full bg-white border-2 border-red-600" />;
+  }
+}
+🧩 4. CREATE ComicLayout.tsx
+tsx
+Copy
+Edit
+// components/ComicLayout.tsx
+import ComicPanel from "./ComicPanel";
+
+export default function ComicLayout({ panels }) {
+  return (
+    <div className="w-[944px] h-[755px] border-4 border-red-600 m-auto bg-white grid grid-cols-3 grid-rows-2 gap-4 p-4 relative">
+      {panels.map((panel, index) => (
+        <ComicPanel key={index} type={panel.type} text={panel.text} color={panel.color} />
+      ))}
+    </div>
+  );
+}
+📄 5. SETUP DYNAMIC ISSUE PAGE
+tsx
+Copy
+Edit
+// app/newsletter/[issue]/page.tsx
+import ComicLayout from "@/components/ComicLayout";
+
+const mockPanels = [
+  { type: "explosion", text: "POW!", color: "teal" },
+  { type: "panel" },
+  { type: "speech-bubble" },
+  { type: "speech-bubble" },
+  { type: "panel" },
+  { type: "explosion", text: "BOOM!", color: "pink" },
+];
+
+export default function NewsletterPage({ params }) {
+  return (
+    <main className="min-h-screen flex items-center justify-center bg-yellow-100">
+      <ComicLayout panels={mockPanels} />
+    </main>
+  );
+}
+✅ 6. OPTIONAL:
+Enable markdown-based or CMS-based dynamic data if you'd like to load each comic newsletter issue dynamically.
+
+🧪 7. TEST
+Make sure:
+
+Tailwind is loading properly
+
+Each comic panel is rendering
+
+Layout is responsive and scrollable
+
+Speech bubbles and explosions are styled uniquely
