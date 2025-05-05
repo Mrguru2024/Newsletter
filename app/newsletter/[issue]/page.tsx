@@ -1,6 +1,6 @@
 
 import React from 'react';
-import ComicLayout from "@/components/ComicLayout";
+import ComicLayout from "../../../components/ComicLayout";
 
 const mockPanels = [
   { type: "explosion", text: "POW!", color: "teal" },
