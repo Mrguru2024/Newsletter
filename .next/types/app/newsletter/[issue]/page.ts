@@ -1,4 +1,4 @@
-// File: /home/runner/workspace/app/newsletter/[issue]/page.tsx
+// File: C:\Users\5epmg\Projects\Newsletter\app\newsletter\[issue]\page.tsx
 import * as entry from '../../../../../app/newsletter/[issue]/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
